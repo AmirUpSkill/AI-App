@@ -1,0 +1,61 @@
+# ── Python / FastAPI ──
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ── Node / React / Vite ──
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.vscode-test/
+*.local
+.vite/
+dist-ssr/
+coverage/
+.nyc_output/
+.cache/
+.parcel-cache/
+
+# ── Docker ──
+.dockerignore
+*.env
+*.env.*
+!*.env.example
+
+# ── OS / IDE ──
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ── Logs ──
+*.log
+logs/
+
+# ── Misc ──
+*.bak
+*.tmp
+*.temp
