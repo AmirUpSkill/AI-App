@@ -1,11 +1,7 @@
-# backend/app/schemas/session.py
-
 import uuid
 from typing import List, Optional
 from pydantic import BaseModel, Field
 from datetime import datetime
-
-# Import the Message schema to use it in nested structures
 from .message import Message
 
 # --- Core Session Schemas ---
@@ -71,5 +67,4 @@ class AllSessionsResponse(BaseModel):
     """
     Today: List[Session]
     Yesterday: List[Session]
-    # Use Field alias to support the space in the key "Previous 30 Days"
     Previous_30_Days: List[Session] = Field(..., alias="Previous 30 Days")

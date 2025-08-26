@@ -1,10 +1,6 @@
-# backend/app/schemas/message.py
-
 import uuid
 from datetime import datetime
 from pydantic import BaseModel
-
-# Import the Enum from the ORM model to ensure consistency
 from app.models.message import MessageRole
 
 class MessageBase(BaseModel):
@@ -30,5 +26,4 @@ class Message(MessageBase):
     created_at: datetime
 
     class Config:
-        # Pydantic v2 compatibility: enables creating the schema from an ORM model instance.
         from_attributes = True
