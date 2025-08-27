@@ -65,7 +65,7 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
 
     def remove(self, db: Session, *, id: Any) -> Optional[ModelType]:
         """Remove an object from the database by ID."""
-        obj = db.query(self.model).get(id)
+        obj = db.get(self.model, id)
         if obj:
             db.delete(obj)
             db.commit()

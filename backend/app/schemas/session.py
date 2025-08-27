@@ -30,8 +30,7 @@ class Session(SessionBase):
     """
     id: uuid.UUID
 
-    class Config:
-        from_attributes = True
+    model_config = {"from_attributes": True}
 
 # --- API Endpoint Specific DTOs ---
 
@@ -58,8 +57,7 @@ class SessionHistory(SessionBase):
     id: uuid.UUID
     chat_history: List[Message]
 
-    class Config:
-        from_attributes = True
+    model_config = {"from_attributes": True}
 
 class AllSessionsResponse(BaseModel):
     """
