@@ -25,7 +25,11 @@ class CRUDSession(CRUDBase[SessionModel, SessionCreate, SessionUpdate]):
         """
         return db.query(self.model).filter(self.model.title.ilike(f"%{keyword}%")).order_by(desc(self.model.updated_at)).all()
 
-class CRUDMessage(CRUDBase[Message, MessageCreate, SessionUpdate]): 
+# Create a simple update schema for Message (since we don't have complex updates)
+class MessageUpdate(MessageCreate):
+    pass
+
+class CRUDMessage(CRUDBase[Message, MessageCreate, MessageUpdate]): 
     """
     CRUD methods for Message model.
     """
@@ -44,6 +48,18 @@ class CRUDMessage(CRUDBase[Message, MessageCreate, SessionUpdate]):
         db.commit()
         db.refresh(db_obj)
         return db_obj
+    
+    def get_by_session(self, db: DBSession, *, session_id: Union[str, uuid.UUID]) -> List[Message]:
+        """
+        Retrieves all messages for a given session, ordered by creation time.
+        """
+        # Convert string to UUID if necessary
+        if isinstance(session_id, str):
+            session_id = uuid.UUID(session_id)
+        
+        return db.query(self.model).filter(
+            self.model.session_id == session_id
+        ).order_by(self.model.created_at).all()
 
 crud_session = CRUDSession(SessionModel)
 crud_message = CRUDMessage(Message)
